@@ -19,4 +19,6 @@ module.exports = function(app) {
     );
 
     app.post("/login", controller.login);
+
+    app.post("/profile", controller.profile);
 };
