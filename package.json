@@ -1,25 +1,36 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "babel-watch server.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
+  "keywords": [
+    "node.js",
+    "express",
+    "jwt",
+    "authentication",
+    "mongodb"
+  ],
   "author": "",
   "license": "ISC",
-  "devDependencies": {
-    "@babel/core": "^7.12.16",
-    "@babel/preset-env": "^7.12.16",
-    "babel-cli": "^6.26.0",
-    "babel-watch": "^7.4.0"
-  },
+  "devDependencies": {},
   "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
-    "mongoose": "^5.11.16",
-    "validator": "^13.5.2"
-  }
+    "express-jwt": "^6.0.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.11.17"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/amckeow3/backend-communal-app-sharing.git"
+  },
+  "bugs": {
+    "url": "https://github.com/amckeow3/backend-communal-app-sharing/issues"
+  },
+  "homepage": "https://github.com/amckeow3/backend-communal-app-sharing#readme",
+  "description": ""
 }
