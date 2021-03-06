@@ -1,32 +1,34 @@
 const express = require('express');
-const bodyParser = require('body-parser');
 const cors = require('cors');
+const mongoose = require('mongoose');
 
 const app = express();
 
+/*
 var corsOption = {
     origin: "http://localhost:4200"
 };
+*/
 
-app.use(cors(corsOption));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 const db = require("./app/models");
 const dbConfig = require("./app/config/db.config");
 
+mongoose.set('useNewUrlParser', true);
+mongoose.set('useUnifiedTopology', true);
+mongoose.set('useFindAndModify', false);
+mongoose.set('useCreateIndex', true);
+
 db.mongoose
-  .connect(`mongodb://${dbConfig.HOST}:${dbConfig.PORT}/${dbConfig.DB}`, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-  })
-  .then(() => {
-    console.log("Successfully connected to MongoDB.");
-  })
-  .catch(err => {
-    console.error("Connection error", err);
-    process.exit();
-  });
+  .connect(dbConfig.DB).then(
+  () => { 
+    console.log('Successfully connected to MongoDB') },
+    err => { console.log('Cannot connect to the database' + err) }
+);
+
 
 //routes
 require('./app/routes/auth.routes')(app);

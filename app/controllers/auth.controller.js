@@ -1,19 +1,22 @@
 const config = require("../config/auth.config");
 const db = require("../models");
 const User = db.user;
+const Appliance = db.appliance;
 
 var jwt = require("jsonwebtoken");
 var bcrypt = require("bcryptjs");
 
 exports.signup = (req, res) => {
     const newUser = new User({
+        username: req.body.username,
         email: req.body.email,
         password: bcrypt.hashSync(req.body.password, 8),
         first_name: req.body.first_name,
         last_name: req.body.last_name,
         address: req.body.address,
         zipcode: req.body.zipcode,
-        phone: req.body.phone
+        phone: req.body.phone,
+
     });
 
     newUser.save((err, user) => {
@@ -29,7 +32,7 @@ exports.signup = (req, res) => {
 
 exports.login = (req, res) => {
     User.findOne({
-        email: req.body.email
+        username: req.body.username
     })
     .populate("-__v")
     .exec((err, user) => {
@@ -60,6 +63,7 @@ exports.login = (req, res) => {
 
         res.status(200).send({
             id: user._id,
+            username: user.username,
             email: user.email,
             first_name: user.first_name,
             last_name: user.last_name,
@@ -88,4 +92,36 @@ exports.profile = function(req, res, next) {
     else {
      return res.status(401).json({ message: 'Invalid token' });
     }
+  };
+
+exports.applianceRegistration = (req, res) => {
+    const newAppliance = new Appliance({
+        appliance_name: req.body.appliance_name,
+        appliance_desc: req.body.appliance_desc,
+        available_from_dt: req.body.available_from_dt,
+        available_to_dt: req.body.available_to_dt,
+        price_per_day: req.body.price_per_day
+    });
+
+    newAppliance.save((err, appliance) => {
+        if (err) {
+            res.status(500).send({ message: err });
+        }
+        else {
+            console.log(appliance);
+            res.send({ message: "Appliance was registered successfully!" });
+        }
+    });
+};
+
+exports.getAppliance = function (req, res) {
+    User.findById(User, function (err, user) {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log(user.appliances);
+        data = user.appliances;
+        res.json({ data });
+      }
+    });
   };

@@ -1,25 +1,39 @@
 const db = require("../models");
 const User = db.user;
 
-checkDuplicateEmail = (req, res, next) => {
+checkDuplicateEmailOrUsername = (req, res, next) => {
+    //Check for duplicate username -- if found, signup error occurs
     User.findOne({
-        email: req.body.email
+        username: req.body.username
     }).exec((err, user) => {
         if (err) {
             res.status(500).send({ message: err });
             return;
         }
         if (user) {
-            res.status(400).send({ message: "Failed! Email is already in use!" });
+            res.status(400).send({ message: "Signup failed! Username is already in use!" });
             return;
-          }
+        }
 
-          next();
+        //Check for duplicate email
+        User.findOne({
+            email: req.body.email
+        }).exec((err, user) => {
+            if (err) {
+                res.status(500).send({ message: err });
+                return;
+            }
+            if (user) {
+                res.status(400).send({ message: "Signup failed! An account with this email already exists"})
+            }
+        })
+
+        next();
     })
 };
 
 const verifySignUp = { 
-    checkDuplicateEmail
+    checkDuplicateEmailOrUsername
 };
 
 module.exports = verifySignUp;

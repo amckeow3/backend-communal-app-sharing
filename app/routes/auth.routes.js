@@ -13,12 +13,18 @@ module.exports = function(app) {
     app.post(
         "/signup",
         [
-            verifySignUp.checkDuplicateEmail
+            verifySignUp.checkDuplicateEmailOrUsername
         ],
         controller.signup
     );
 
     app.post("/login", controller.login);
 
-    app.post("/profile", controller.profile);
+    app.post("/appliance-registration", controller.applianceRegistration);
+
+    //UPDATE AN EXISTING USER PROFILE
+    //app.put("/edit-profile")
+
+    //DELETES A USER
+    //app.post("/user/{userId}")
 };
