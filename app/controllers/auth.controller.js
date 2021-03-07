@@ -25,7 +25,7 @@ exports.signup = (req, res) => {
         }
         else {
             console.log(user);
-            res.send({ message: "User was registered successfully!" });
+            res.status(200).send({ message: "User was registered successfully!" });
         }
     });
 };
@@ -74,54 +74,3 @@ exports.login = (req, res) => {
           });
     });
 };
-
-exports.loginRequired = function(req, res, next) {
-    if (req.user) {
-      next();
-    } else {
-  
-      return res.status(401).json({ message: 'Unauthorized user!!' });
-    }
-};
-
-exports.profile = function(req, res, next) {
-    if (req.user) {
-      res.send(req.user);
-      next();
-    } 
-    else {
-     return res.status(401).json({ message: 'Invalid token' });
-    }
-  };
-
-exports.applianceRegistration = (req, res) => {
-    const newAppliance = new Appliance({
-        appliance_name: req.body.appliance_name,
-        appliance_desc: req.body.appliance_desc,
-        available_from_dt: req.body.available_from_dt,
-        available_to_dt: req.body.available_to_dt,
-        price_per_day: req.body.price_per_day
-    });
-
-    newAppliance.save((err, appliance) => {
-        if (err) {
-            res.status(500).send({ message: err });
-        }
-        else {
-            console.log(appliance);
-            res.send({ message: "Appliance was registered successfully!" });
-        }
-    });
-};
-
-exports.getAppliance = function (req, res) {
-    User.findById(User, function (err, user) {
-      if (err) {
-        console.log(err);
-      } else {
-        console.log(user.appliances);
-        data = user.appliances;
-        res.json({ data });
-      }
-    });
-  };

@@ -12,5 +12,16 @@ module.exports = function(app) {
 
   app.get("/main", controller.allAccess);
 
-  app.get("/homepage", [authJwt.verifyToken], controller.userHome)
+  app.get("/homepage", [authJwt.verifyToken], controller.userHome);
+
+  app.get("/user/:username", controller.getUser);
+
+  app.delete("/user/:username", controller.deleteUser);
+
+  app.put("/updateEmail/:username", controller.updateEmail);
+  app.put("/updateFirstName/:username", controller.updateFirstName);
+  app.put("/updateLastName/:username", controller.updateLastName);
+  app.put("/updateZipcode/:username", controller.updateZipcode);
+  app.put("/updateAddress/:username", controller.updateAddress);
+  app.put("/updatePhone/:username", controller.updatePhone);
 }
