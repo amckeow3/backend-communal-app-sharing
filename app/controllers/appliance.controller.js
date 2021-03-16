@@ -1,6 +1,7 @@
 const config = require("../config/auth.config");
 const db = require("../models");
 const User = db.user;
+const Appliance = db.appliance;
 
 var jwt = require("jsonwebtoken");
 
@@ -19,15 +20,13 @@ exports.applianceRegistration = (req, res) => {
     });
 };
 
-exports.getAppliance = (req, res) => {
-    User.findById(User, function (err, user) {
-      if (err) {
-        console.log(err);
-      } else {
-        console.log(user.appliances);
-        data = user.appliances;
-        res.json({ data });
-      }
-    });
-  };
+exports.getAppliances = (req, res, next) => {
+  User.find({ username: { $nin: req.params.username}, zipcode: req.params.zipcode, $expr: { $gt: [{$size: "$appliances"}, 0]}}, (err, users) => {
+    if (err) {
+      console.log(err);
+    } else { 
+        res.json({users});
+      } 
+    })
+  }
   

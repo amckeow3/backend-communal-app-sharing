@@ -10,4 +10,6 @@ module.exports = function(app) {
     });
 
     app.post('/applianceRegistration/:username', controller.applianceRegistration);
+
+    app.get('/nearbyAppliances/:username/:zipcode', controller.getAppliances);
 };

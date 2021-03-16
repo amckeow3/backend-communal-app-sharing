@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "server.js",
   "scripts": {
-    "start-dev": "nodemon index.js"
+    "start-dev": "nodemon index.js",
+    "start": "node server.js"
   },
   "keywords": [
     "node.js",
@@ -12,20 +13,17 @@
     "authentication",
     "mongodb"
   ],
-  "author": {
-    "name": "Adrianna McKeown",
-    "email": "amckeow3@uncc.edu"
-  },
+  "author": "Adrianna McKeown <amckeow3@uncc.edu>",
   "license": "ISC",
   "devDependencies": {
     "@types/node": "^14.14.32",
-    "cross-env": "^7.0.3"
+    "cross-env": "^7.0.3",
+    "express": "^4.17.1"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
-    "express": "^4.17.1",
     "express-jwt": "^6.0.0",
     "jsonwebtoken": "^8.5.1",
     "mongodb-memory-server": "^6.9.3",
