@@ -1,7 +1,7 @@
 const config = require("../config/auth.config");
 const db = require("../models");
 const User = db.user;
-const Appliance = db.appliance;
+const mongoose = require('mongoose');
 
 var jwt = require("jsonwebtoken");
 
@@ -20,13 +20,35 @@ exports.applianceRegistration = (req, res) => {
     });
 };
 
-exports.getAppliances = (req, res, next) => {
+exports.getNearbyAppliances = (req, res) => {
   User.find({ username: { $nin: req.params.username}, zipcode: req.params.zipcode, $expr: { $gt: [{$size: "$appliances"}, 0]}}, (err, users) => {
     if (err) {
       console.log(err);
     } else { 
-        res.json({users});
+        res.status(200).json({ users });
       } 
     })
   }
+
+  exports.getAppliances = (req, res) => {
+    User.findOne({ username: req.params.username}, (err, user) => {
+      if (err) {
+        console.log(err);
+      } else { 
+        res.status(200).json(user);
+      }
+    })
+  }
+
+  exports.applianceDetails = (req, res) => {
+      var ObjectId = require('mongodb').ObjectId;
+      User.find({ username: req.params.username , "appliance.id": req.params._id }, (err, data) => {
+        if (err) {
+          console.log(err);
+        } else {
+          console.log(data)
+        }
+      })
+    }
   
+

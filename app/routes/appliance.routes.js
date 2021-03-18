@@ -11,5 +11,9 @@ module.exports = function(app) {
 
     app.post('/applianceRegistration/:username', controller.applianceRegistration);
 
-    app.get('/nearbyAppliances/:username/:zipcode', controller.getAppliances);
+    app.get('/nearbyAppliances/:username/:zipcode', controller.getNearbyAppliances);
+
+    app.get('/myAppliances/:username', controller.getAppliances);
+
+    app.get('/applianceDetails/:username/:_id', controller.applianceDetails);
 };
