@@ -9,8 +9,9 @@ var jwt = require("jsonwebtoken");
 exports.applianceRegistration = (req, res) => {
     User.findOne({ username: req.params.username }, (err, user) => {
             var { appliance_name, appliance_desc, price_per_day } = req.body;
+            var registered = new Date().toISOString().slice(0,10);
         User.updateOne({ username: user.username }, 
-            { $push: { appliances: { appliance_name, appliance_desc, price_per_day } } }, { safe: true, new: true }, (err, user) => {
+            { $push: { appliances: { appliance_name, appliance_desc, price_per_day, registered } } }, { safe: true, new: true }, (err, user) => {
             if (err) {
                 return res.status(500).send(err);
             } else {

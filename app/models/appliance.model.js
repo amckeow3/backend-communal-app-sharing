@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-const User = '../models/user.model.js';
+const Image = '../models/image.model.js';
 
 const Appliance = new Schema({
     _id: {
@@ -15,9 +15,9 @@ const Appliance = new Schema({
     price_per_day: {
         type: Number
     },
-    image: {
-        type: String,
-        data: Buffer
+    registered: {
+        type: Date,
+        default: Date.now()
     }
 });
 
