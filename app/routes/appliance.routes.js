@@ -15,5 +15,5 @@ module.exports = function(app) {
 
     app.get('/myAppliances/:username', controller.getAppliances);
 
-    app.get('/applianceDetails/:username/:_id', controller.applianceDetails);
+    app.get('/applianceDetails/:username/:appliance_name', controller.applianceDetails);
 };

@@ -1,6 +1,8 @@
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
+const https = require('https');
+const fs = require('fs');
 
 const app = express();
 
@@ -22,13 +24,14 @@ mongoose.set('useUnifiedTopology', true);
 mongoose.set('useFindAndModify', false);
 mongoose.set('useCreateIndex', true);
 
+
+
 db.mongoose
   .connect(dbConfig.DB).then(
   () => { 
     console.log('Successfully connected to MongoDB') },
     err => { console.log('Cannot connect to the database' + err) }
 );
-
 
 //routes
 require('./app/routes/auth.routes')(app);

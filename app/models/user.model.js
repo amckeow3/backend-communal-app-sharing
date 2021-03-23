@@ -1,23 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-
-const Appliances = new Schema({
-    appliance_name: {
-        type: String
-    },
-    appliance_desc: {
-        type: String
-    },
-    available_from_dt: {
-        type: Date
-    },
-    available_to_dt: {
-        type: Date
-    },
-    price_per_day: {
-        type: Number
-    }
-});
+const Appliance = '../models/appliance.model.js';
 
 const User = new Schema({
     username: {
@@ -44,7 +27,7 @@ const User = new Schema({
     phone: {
         type: String
     },
-    appliances: [Appliances]
+    appliances: [Appliance]
 });
 
 module.exports = mongoose.model('users', User);
