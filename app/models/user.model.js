@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+//const Item = '../models/item.model.js';
 
 const Item = new Schema({
     item_name: {

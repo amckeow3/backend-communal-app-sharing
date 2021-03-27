@@ -1,6 +1,7 @@
 const config = require("../config/auth.config");
 const db = require("../models");
 const User = db.user;
+const Item = db.item;
 const mongoose = require('mongoose');
 
 var jwt = require("jsonwebtoken");
@@ -10,7 +11,7 @@ exports.itemRegistration = (req, res) => {
             var { item_name, item_desc, price_per_day } = req.body;
             var registered = new Date().toISOString().slice(0,10);
         User.updateOne({ username: user.username }, 
-            { $push: { items: { item_name, item_desc, price_per_day } } }, { safe: true, new: true }, (err, user) => {
+            { $push: { items: { item_name, item_desc, price_per_day, registered } } }, { safe: true, new: true }, (err, user) => {
             if (err) {
                 return res.status(500).send(err);
             } else {
