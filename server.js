@@ -24,8 +24,6 @@ mongoose.set('useUnifiedTopology', true);
 mongoose.set('useFindAndModify', false);
 mongoose.set('useCreateIndex', true);
 
-
-
 db.mongoose
   .connect(dbConfig.DB).then(
   () => { 
