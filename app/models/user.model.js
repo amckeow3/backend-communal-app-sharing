@@ -1,6 +1,21 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-const Item = '../models/item.model.js';
+
+const Item = new Schema({
+    item_name: {
+        type: String
+    },
+    item_desc: {
+        type: String
+    },
+    price_per_day: {
+        type: Number
+    },
+    registered: {
+        type: Date,
+        default: Date.now()
+    }
+});
 
 const User = new Schema({
     username: {

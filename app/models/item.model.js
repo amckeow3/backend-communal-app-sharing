@@ -1,11 +1,10 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-const Image = '../models/image.model.js';
 
 const Item = new Schema({
     _id: {
-       type: Schema.Types.ObjectId
-    },
+        type: Schema.ObjectId
+     },
     item_name: {
         type: String
     },
