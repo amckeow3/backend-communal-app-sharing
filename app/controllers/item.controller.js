@@ -77,4 +77,16 @@ exports.getNearbyItems = (req, res) => {
     });
   }
 
-  
+  exports.deleteItem = (req, res) => {
+    User.findOne({ username: req.params.username }, (err, user) => {
+      var item_name = req.body.item_name;
+  User.updateOne({ username: user.username }, 
+      { $pull: { items: { item_name }}}, (err) => {
+        if (err) {
+            console.log(err);
+        } else {
+            res.status(200).send({ message: "Item was successfully deleted!" })
+        }
+    });
+  });
+}

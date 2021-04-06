@@ -35,6 +35,7 @@ db.mongoose
 require('./app/routes/auth.routes')(app);
 require('./app/routes/user.routes')(app);
 require('./app/routes/item.routes')(app);
+require('./app/routes/payment.routes')(app);
 
 // set port, listen for requests
 const PORT = process.env.PORT || 4000;

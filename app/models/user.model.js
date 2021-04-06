@@ -2,6 +2,24 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 //const Item = '../models/item.model.js';
 
+const Payment = new Schema({
+    card_no: {
+        type: String
+    },
+    name: {
+        type: String
+    },
+    exp_month: {
+        type: String
+    }, 
+    exp_year: {
+        type: String
+    },
+    card_type: {
+        type: String
+    }
+})
+
 const Item = new Schema({
     item_name: {
         type: String
@@ -43,7 +61,8 @@ const User = new Schema({
     phone: {
         type: String
     },
-    items: [Item]
+    items: [Item],
+    payments: [Payment]
 });
 
 module.exports = mongoose.model('users', User);

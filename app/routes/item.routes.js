@@ -16,4 +16,6 @@ module.exports = function(app) {
     app.get('/myItems/:username', controller.getItems);
 
     app.get('/itemDetails/:username/:item_name', controller.itemDetails);
+
+    app.delete('/deleteItem/:username', controller.deleteItem);
 };
