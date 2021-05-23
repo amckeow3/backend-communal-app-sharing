@@ -32,6 +32,7 @@
     "mongodb-memory-server": "^6.9.3",
     "mongoose": "^5.11.17",
     "nginx": "^1.0.0",
+    "nit": "^0.0.5",
     "pm2": "^4.5.5"
   },
   "repository": {
