@@ -6,11 +6,9 @@ const fs = require('fs');
 
 const app = express();
 
-/*
 var corsOption = {
     origin: "http://localhost:4200"
 };
-*/
 
 app.use(cors());
 app.use(express.json());
@@ -36,6 +34,7 @@ require('./app/routes/auth.routes')(app);
 require('./app/routes/user.routes')(app);
 require('./app/routes/item.routes')(app);
 require('./app/routes/payment.routes')(app);
+require('./app/routes/notification.routes')(app);
 
 // set port, listen for requests
 const PORT = process.env.PORT || 4000;

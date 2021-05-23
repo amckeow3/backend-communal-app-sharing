@@ -17,8 +17,11 @@ const Payment = new Schema({
     },
     card_type: {
         type: String
+    },
+    cvc: {
+        type: String
     }
-})
+});
 
 const Item = new Schema({
     item_name: {
@@ -33,6 +36,15 @@ const Item = new Schema({
     registered: {
         type: Date,
         default: Date.now()
+    }
+});
+
+const Notification = new Schema({
+    from_dt: {
+        type: String
+    },
+    to_dt: {
+        type: String
     }
 });
 
@@ -62,7 +74,8 @@ const User = new Schema({
         type: String
     },
     items: [Item],
-    payments: [Payment]
+    payments: [Payment],
+    notifications: [Notification]
 });
 
 module.exports = mongoose.model('users', User);
