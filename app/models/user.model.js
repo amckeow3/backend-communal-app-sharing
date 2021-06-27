@@ -47,10 +47,10 @@ const Notification = new Schema({
         type: String
     },
     fromDt: {
-        type: String
+        type: Date
     },
     toDt: {
-        type: String
+        type: Date
     }
 });
 
