@@ -11,4 +11,5 @@ module.exports = function(app) {
 
     app.post('/newNotification/:username', controller.newNotification);
     app.get('/notifications/:username', controller.getNotifications);
+    app.get('/notificationDetails/:username/:item_name', controller.notificationDetails);
 };
