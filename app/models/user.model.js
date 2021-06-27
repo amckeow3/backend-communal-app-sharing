@@ -40,10 +40,16 @@ const Item = new Schema({
 });
 
 const Notification = new Schema({
-    from_dt: {
+    item_name: {
         type: String
     },
-    to_dt: {
+    borrower: {
+        type: String
+    },
+    fromDt: {
+        type: String
+    },
+    toDt: {
         type: String
     }
 });
