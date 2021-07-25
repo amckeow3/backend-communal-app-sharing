@@ -40,7 +40,8 @@ exports.getPaymentMethods = (req, res) => {
       {
         "$group": {
           "_id": "$payments._id",
-          "card_no": {$first: "$payments.card_no" },
+          "card_no": { $first: "$payments.card_no" },
+          "card_type": { $first: "$payments.card_type" },
           "username": { $first: "$username" },
           "first_name": { $first: "$first_name" },
           "last_name": { $first: "$last_name" },
