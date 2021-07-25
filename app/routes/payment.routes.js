@@ -12,4 +12,6 @@ module.exports = function(app) {
     app.post('/newPaymentMethod/:username', controller.newPayment);
 
     app.get('/myPaymentMethods/:username', controller.getPaymentMethods);
+
+    app.get('/paymentMethodDetails/:username/:card_no', controller.paymentMethodDetails);
 };
