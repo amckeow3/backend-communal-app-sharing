@@ -47,10 +47,11 @@ exports.getPaymentMethods = (req, res) => {
           "last_name": { $first: "$last_name" },
           "email": { $first: "$email" },
           "address": { $first: "$address" },
-          "zipcode": { $first: "$zipcode" }
+          "zipcode": { $first: "$zipcode" },
+          "phone": { $first: "$phone"}
         }
       },
-      { "$project": { "_id": 1, "card_no": 1, "username": 1, "first_name": 1, "last_name": 1, "email": 1, "address": 1, "zipcode": 1 }
+      { "$project": { "_id": 1, "card_no": 1, "card_type": 1, "phone": 1, "username": 1, "first_name": 1, "last_name": 1, "email": 1, "address": 1, "zipcode": 1 }
     }], (err, data) => {
     if (err) {
       console.log(err);
